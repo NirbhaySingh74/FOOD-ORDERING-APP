@@ -67,7 +67,7 @@ const Body = () => {
       </>
     );
   }
-  console.log(filterData);
+
   return (
     <div>
       <Search onSearch={handleSearch} onClear={handleClear} />
@@ -77,7 +77,7 @@ const Body = () => {
         <div className="restaurant-card">
           {filterData.map((item) => {
             return (
-              <Link to={"/restaurant/" + item.info.id} key={item.info.id}>
+              <Link to={`restaurants/${item.info.id}`} key={item.info.id}>
                 <RestaurantCard
                   name={item.info.name}
                   cuisine={item.info.cuisines}

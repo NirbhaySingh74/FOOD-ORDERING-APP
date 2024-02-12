@@ -4,7 +4,7 @@ import { CDN_IMAGE } from "../utils/contact";
 import RestaurantCard from "./RestaurantCard";
 import Search from "./Search";
 import ShimerUi from "./ShimerUi";
-
+import { Link } from "react-router-dom";
 const Body = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -19,7 +19,7 @@ const Body = () => {
   async function getRestaurants() {
     try {
       const data = await fetch(
-        "https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D18.5204303%26lng%3D73.8567437%26page_type%3DDESKTOP_WEB_LISTING"
+        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=23.2682323&lng=77.4780844&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
       );
       const json = await data.json();
       let list =
@@ -33,13 +33,13 @@ const Body = () => {
       setAllRestaurants(list);
       setFilterData(list);
       setLoading(false);
-      // console.log(list);
+      // console.log(json);
     } catch (error) {
       console.error("Error fetching restaurants:", error);
     }
   }
 
-  console.log(allRestaurants);
+  // console.log(allRestaurants);
 
   const handleSearch = (inputText) => {
     if (!inputText) {
@@ -67,7 +67,7 @@ const Body = () => {
       </>
     );
   }
-
+  console.log(filterData);
   return (
     <div>
       <Search onSearch={handleSearch} onClear={handleClear} />
@@ -75,27 +75,18 @@ const Body = () => {
         <ShimerUi />
       ) : (
         <div className="restaurant-card">
-          {filterData.map((item, index) => {
+          {filterData.map((item) => {
             return (
-              <div key={index}>
-                {/* <img
-                src={url + item.info.cloudinaryImageId}
-                alt={name}
-                className="restaurant-img"
-              />
-              <div className="restaurant-info">
-                <h4 className="restaurant-name">{item.info.name}</h4>
-                <h6 className="restaurant-area">{item.info.areaName}</h6>
-              </div> */}
+              <Link to={"/restaurant/" + item.info.id} key={item.info.id}>
                 <RestaurantCard
                   name={item.info.name}
                   cuisine={item.info.cuisines}
                   rating={item.info.avgRating}
                   img={CDN_IMAGE + item.info.cloudinaryImageId}
                   price={item.info.costForTwo}
-                  delivery={item.info.sla.deliveryTime + " min"}
+                  delivery={item.info.sla.deliveryTime}
                 />
-              </div>
+              </Link>
             );
           })}
         </div>

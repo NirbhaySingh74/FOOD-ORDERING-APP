@@ -7,6 +7,8 @@ import Contact from "./components/Contact.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Error from "./components/Error.jsx";
 import RestaurantMenu from "./components/RestaurantMenu.jsx";
+
+import ProfileClass from "./components/ProfileClass.jsx";
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -19,6 +21,12 @@ const appRouter = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+        children: [
+          {
+            path: "profile",
+            element: <ProfileClass name={"Nirbhay Singh"} />,
+          },
+        ],
       },
       {
         path: "/contact",

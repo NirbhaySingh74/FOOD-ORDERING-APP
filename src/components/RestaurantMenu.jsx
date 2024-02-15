@@ -26,7 +26,10 @@ const RestaurantMenu = () => {
   if (restData.length === 0) {
     return <ShimmerUi />;
   }
-
+  console.log(
+    restData.cards[2].groupedCard.cardGroupMap.REGULAR.cards[4].card.card
+      .itemCards[0].card.info.name
+  );
   return (
     <div>
       <div>
@@ -44,11 +47,12 @@ const RestaurantMenu = () => {
       <div>
         <h1>Menu - </h1>
         <ul>
-          {restData.cards[2].groupedCard.cardGroupMap.REGULAR.cards[4].card.card.itemCards.map(
-            (item) => {
-              <li key={item.id}>{item.card.info.name}</li>;
-            }
-          )}
+          {Object.values(
+            restData.cards[2].groupedCard.cardGroupMap.REGULAR.cards[3].card
+              .card.itemCards
+          ).map((item) => (
+            <li key={item.id}>{item.card.info.name}</li>
+          ))}
         </ul>
       </div>
     </div>

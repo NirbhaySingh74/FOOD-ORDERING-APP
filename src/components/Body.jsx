@@ -5,6 +5,7 @@ import RestaurantCard from "./RestaurantCard";
 import Search from "./Search";
 import ShimerUi from "./ShimerUi";
 import { Link } from "react-router-dom";
+import FilterRestaurant from "./FilterResturant";
 const Body = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,15 +26,15 @@ const Body = () => {
       let list =
         json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants;
-      if (list === undefined) {
-        list =
-          json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
-            ?.restaurants;
-      }
+      // if (list === undefined) {
+      //   list =
+      //     json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+      //       ?.restaurants;
+      // }
       setAllRestaurants(list);
       setFilterData(list);
       setLoading(false);
-      // console.log(json);
+      console.log(json);
     } catch (error) {
       console.error("Error fetching restaurants:", error);
     }
@@ -41,7 +42,7 @@ const Body = () => {
 
   // console.log(allRestaurants);
 
-  const handleSearch = (inputText) => {
+  const handleSearch = (inputText, allRestaurants) => {
     if (!inputText) {
       setFilterData(allRestaurants);
       setNotFound(false);
@@ -71,6 +72,7 @@ const Body = () => {
   return (
     <div>
       <Search onSearch={handleSearch} onClear={handleClear} />
+      <FilterRestaurant />
       {loading ? (
         <ShimerUi />
       ) : (

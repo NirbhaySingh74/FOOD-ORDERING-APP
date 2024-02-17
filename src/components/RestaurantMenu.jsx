@@ -1,35 +1,16 @@
-import { useState, useEffect } from "react";
 import { CDN_IMAGE } from "../utils/contact";
 import ShimmerUi from "./ShimerUi";
 import { useParams } from "react-router-dom";
+import useRestaurant from "../utils/useRestaurant";
 
 const RestaurantMenu = () => {
-  const [restData, setResData] = useState([]);
   const { resId } = useParams();
-  useEffect(() => {
-    const fetchMenu = async () => {
-      const response = await fetch(
-        `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=23.2579017&lng=77.4633851&restaurantId=${resId}`
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch menu data");
-      }
-      const result = await response.json();
 
-      const menuItems = result.data;
-      setResData(menuItems);
-    };
-
-    fetchMenu();
-  }, [resId]);
-
+  const restData = useRestaurant(resId);
   if (restData.length === 0) {
     return <ShimmerUi />;
   }
-  console.log(
-    restData.cards[2].groupedCard.cardGroupMap.REGULAR.cards[4].card.card
-      .itemCards[0].card.info.name
-  );
+
   return (
     <div>
       <div>

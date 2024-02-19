@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import "./RestauratCard.css";
-import { CDN_IMAGE } from "../utils/contact";
+import { CARD_API, CDN_IMAGE } from "../utils/constant";
 import RestaurantCard from "./RestaurantCard";
 import Search from "./Search";
 import ShimerUi from "./ShimerUi";
 import { Link } from "react-router-dom";
 import FilterRestaurant from "./FilterResturant";
+import useOnline from "../utils/useOnline";
+
 const Body = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filterData, setFilterData] = useState(null);
   const [notFound, setNotFound] = useState(false); // New state for not found message
-
+  const isOnline = useOnline();
   useEffect(() => {
     getRestaurants();
   }, []);
@@ -19,12 +21,10 @@ const Body = () => {
   // Api
   async function getRestaurants() {
     try {
-      const data = await fetch(
-        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=23.2682323&lng=77.4780844&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-      );
+      const data = await fetch(CARD_API);
       const json = await data.json();
       let list =
-        json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+        json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants;
       // if (list === undefined) {
       //   list =
@@ -67,6 +67,10 @@ const Body = () => {
         <h4 style={{ color: "red", textAlign: "center" }}>No items found.</h4>
       </>
     );
+  }
+
+  if (!isOnline) {
+    return <h1>😞Please check your internet connection</h1>;
   }
 
   return (

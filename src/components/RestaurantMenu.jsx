@@ -1,4 +1,4 @@
-import { CDN_IMAGE } from "../utils/contact";
+import { CDN_IMAGE } from "../utils/constant";
 import ShimmerUi from "./ShimerUi";
 import { useParams } from "react-router-dom";
 import useRestaurant from "../utils/useRestaurant";

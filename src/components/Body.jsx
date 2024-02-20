@@ -24,7 +24,7 @@ const Body = () => {
       const data = await fetch(CARD_API);
       const json = await data.json();
       let list =
-        json?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle
+        json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants;
       // if (list === undefined) {
       //   list =
@@ -42,7 +42,7 @@ const Body = () => {
 
   // console.log(allRestaurants);
 
-  const handleSearch = (inputText, allRestaurants) => {
+  const handleSearch = (inputText) => {
     if (!inputText) {
       setFilterData(allRestaurants);
       setNotFound(false);
@@ -87,10 +87,10 @@ const Body = () => {
                 <RestaurantCard
                   name={item.info.name}
                   cuisine={item.info.cuisines}
-                  rating={item.info.avgRating}
+                  rating={item.info.avgRatingString}
                   img={CDN_IMAGE + item.info.cloudinaryImageId}
                   price={item.info.costForTwo}
-                  delivery={item.info.sla.deliveryTime}
+                  delivery={item.info.sla.slaString}
                 />
               </Link>
             );

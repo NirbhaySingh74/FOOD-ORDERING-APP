@@ -9,8 +9,10 @@ const RestaurantCard = ({ name, cuisine, rating, img, price, delivery }) => {
         <span>
           <span className="star">&#9733;</span> {rating}
         </span>
+
         <span>&#x2022; {price}</span>
-        <span>&#x2022; {delivery}</span>
+        <br />
+        <span className="del">&#x2022; {delivery}</span>
         <p>{cuisine.slice(0, 3).join(",")}</p>
         {/* <h5 className="restaurant-area">{areaName}</h5> */}
       </div>

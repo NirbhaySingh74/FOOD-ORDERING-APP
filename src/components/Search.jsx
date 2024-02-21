@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types"; // Import PropTypes
-import "./Search.css";
+
 function Search({ onSearch, onClear }) {
   const [inputText, setInputText] = useState("");
   const handleSearch = () => {
@@ -13,18 +13,24 @@ function Search({ onSearch, onClear }) {
     setInputText("");
   };
   return (
-    <div className="search-container">
+    <div className="flex justify-center mt-8">
       <input
         type="text"
         placeholder="Search..."
         value={inputText}
         onChange={(e) => setInputText(e.target.value)}
-        className="search-input"
+        className="py-1.5 px-2 w-1/3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 rounded-md"
       />
-      <button onClick={handleSearch} className="search-button">
+      <button
+        onClick={handleSearch}
+        className="p-2 px-4 bg-green-800 rounded-md ml-2 text-xl"
+      >
         Search
       </button>
-      <button onClick={handleClear} className="search-button">
+      <button
+        onClick={handleClear}
+        className="p-2 px-4 bg-green-800 rounded-md ml-2 text-xl"
+      >
         Clear
       </button>
     </div>

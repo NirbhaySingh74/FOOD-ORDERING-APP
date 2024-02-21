@@ -1,17 +1,17 @@
 import logo from "../assets/Swiggy.png";
 import { Link } from "react-router-dom";
-import "../App.css";
+
 const Header = () => {
   return (
-    <div className="header">
+    <div className="flex justify-between shadow-2xl py-5">
       <div>
         <Link to="/">
           {" "}
-          <img className="logo" src={logo} alt="" />
+          <img className="w-20 mx-20" src={logo} alt="" />
         </Link>
       </div>
-      <div className="nav-items">
-        <ul>
+      <div className="">
+        <ul className="flex justify-center mt-5 gap-x-9 mx-16 ">
           <li>
             <Link to="/">Home</Link>
           </li>

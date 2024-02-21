@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./RestauratCard.css";
+
 import { CARD_API, CDN_IMAGE } from "../utils/constant";
 import RestaurantCard from "./RestaurantCard";
 import Search from "./Search";
@@ -26,11 +26,7 @@ const Body = () => {
       let list =
         json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants;
-      // if (list === undefined) {
-      //   list =
-      //     json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
-      //       ?.restaurants;
-      // }
+
       setAllRestaurants(list);
       setFilterData(list);
       setLoading(false);
@@ -40,7 +36,14 @@ const Body = () => {
     }
   }
 
-  // console.log(allRestaurants);
+  const handleFilterWithStar = () => {
+    const filterRest = allRestaurants.filter(
+      (restaurant) => restaurant.info.avgRating >= 4.0
+    );
+    setFilterData(filterRest);
+    console.log(filterRest);
+    console.log("clicked");
+  };
 
   const handleSearch = (inputText) => {
     if (!inputText) {
@@ -51,7 +54,7 @@ const Body = () => {
         user.info.name.toLowerCase().includes(inputText.toLowerCase())
       );
       setFilterData(filteredRestaurent);
-      // Set not found message based on the search results
+
       setNotFound(filteredRestaurent.length === 0);
     }
   };
@@ -76,11 +79,11 @@ const Body = () => {
   return (
     <div>
       <Search onSearch={handleSearch} onClear={handleClear} />
-      <FilterRestaurant />
+      <FilterRestaurant onSearch={handleFilterWithStar} />
       {loading ? (
         <ShimerUi />
       ) : (
-        <div className="restaurant-card">
+        <div className=" w-auto flex flex-wrap items-center justify-center self-stretch">
           {filterData.map((item) => {
             return (
               <Link to={`restaurants/${item.info.id}`} key={item.info.id}>

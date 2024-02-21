@@ -1,19 +1,22 @@
 import PropTypes from "prop-types";
-import "./RestauratCard.css";
+
 const RestaurantCard = ({ name, cuisine, rating, img, price, delivery }) => {
   return (
-    <div className="card">
-      <img src={img} alt={name} className="restaurant-img" />
+    <div className="w-60 rounded-md p-3 m-1 cursor-pointer hover:scale-95">
+      <img src={img} alt={name} className="rounded-2xl w-full" />
       <div className="restaurant-info">
-        <h3 className="restaurant-name">{name}</h3>
+        <h3 className="py-2 font-bold text-xl">{name}</h3>
         <span>
-          <span className="star">&#9733;</span> {rating}
+          <span className="bg-green-800 py-1 px-2 rounded-full mb-2">
+            &#9733;
+          </span>{" "}
+          {rating}
         </span>
 
-        <span>&#x2022; {price}</span>
+        <span className="ml-2">&#x2022; {price}</span>
         <br />
-        <span className="del">&#x2022; {delivery}</span>
-        <p>{cuisine.slice(0, 3).join(",")}</p>
+        <span className="p-2">&#x2022; {delivery}</span>
+        <p className="font-light">{cuisine.slice(0, 3).join(",")}</p>
         {/* <h5 className="restaurant-area">{areaName}</h5> */}
       </div>
     </div>

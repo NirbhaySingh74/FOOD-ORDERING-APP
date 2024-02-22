@@ -94,6 +94,7 @@ const Body = () => {
                   img={CDN_IMAGE + item.info.cloudinaryImageId}
                   price={item.info.costForTwo}
                   delivery={item.info.sla.slaString}
+                  areaName={item.info.areaName}
                 />
               </Link>
             );

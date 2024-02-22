@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PropTypes from "prop-types"; // Import PropTypes
+import PropTypes from "prop-types";
 
 function Search({ onSearch, onClear }) {
   const [inputText, setInputText] = useState("");

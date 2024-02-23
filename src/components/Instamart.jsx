@@ -30,7 +30,7 @@ Seaction.propTypes = {
   setIsVisible: PropTypes.func.isRequired,
 };
 const Instamart = () => {
-  const [visibleSection, setVisibleSection] = useState("about");
+  const [visibleSection, setVisibleSection] = useState("");
   return (
     <div>
       <h1 className="text-3xl p-2 m-2 font-bold">Instamart</h1>
@@ -40,6 +40,7 @@ const Instamart = () => {
           "On the other hand, we denourse with righteous indigantion and dislike men who are nothin On the other hand, we denourse with righteous indigantion and dislike men who are nothin"
         }
         isVisible={visibleSection === "about"}
+        setIsVisible={() => setVisibleSection("about")}
       />
 
       <Seaction
@@ -48,6 +49,7 @@ const Instamart = () => {
           "On the other hand, we denourse with righteous indigantion and dislike men who are nothin On the other hand, we denourse with righteous indigantion and dislike men who are nothin"
         }
         isVisible={visibleSection === "team"}
+        setIsVisible={() => setVisibleSection("team")}
       />
 
       <Seaction
@@ -56,6 +58,7 @@ const Instamart = () => {
           "On the other hand, we denourse with righteous indigantion and dislike men who are nothin On the other hand, we denourse with righteous indigantion and dislike men who are nothin"
         }
         isVisible={visibleSection === "career"}
+        setIsVisible={() => setVisibleSection("career")}
       />
     </div>
   );

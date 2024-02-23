@@ -1,7 +1,9 @@
 import logo from "../assets/Swiggy.png";
 import { Link } from "react-router-dom";
-
+// import { useContext } from "react";
+// import UserContext from "../utils/UserContext";
 const Header = () => {
+  // const { user } = useContext(UserContext);
   return (
     <div className="flex justify-between shadow-2xl py-5">
       <div>
@@ -25,6 +27,7 @@ const Header = () => {
           <li>
             <Link to="/instamart">Instamart</Link>
           </li>
+          {/* {user.name} */}
         </ul>
       </div>
     </div>

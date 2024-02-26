@@ -2,12 +2,18 @@ import { CDN_IMAGE } from "../utils/constant";
 import ShimmerUi from "./ShimerUi";
 import { useParams } from "react-router-dom";
 import useRestaurant from "../utils/useRestaurant";
+import { addItem } from "../utils/cartSlice";
+import { useDispatch } from "react-redux";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
 
+  const dispatch = useDispatch();
   const restData = useRestaurant(resId);
-
+  const handleAddItem = () => {
+    dispatch(addItem("papaya"));
+    console.log("called");
+  };
   if (restData.length === 0) {
     return <ShimmerUi />;
   }
@@ -36,6 +42,14 @@ const RestaurantMenu = () => {
         <p>{costForTwoMessage}</p>
         <p>{avgRating}</p>
         <p>{feeDetails.message}</p>
+      </div>
+      <div>
+        <button
+          className="px-4 py-2 rounded-sm m-5 bg-green-200"
+          onClick={() => handleAddItem()}
+        >
+          Add Item
+        </button>
       </div>
       <div>
         <h1>Menu - </h1>

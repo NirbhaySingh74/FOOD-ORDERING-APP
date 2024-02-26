@@ -24,7 +24,7 @@ const Body = () => {
       const data = await fetch(CARD_API);
       const json = await data.json();
       let list =
-        json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+        json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants;
 
       setAllRestaurants(list);

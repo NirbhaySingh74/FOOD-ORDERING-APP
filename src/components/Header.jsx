@@ -1,9 +1,12 @@
+import { useSelector } from "react-redux";
 import logo from "../assets/Swiggy.png";
 import { Link } from "react-router-dom";
 // import { useContext } from "react";
 // import UserContext from "../utils/UserContext";
 const Header = () => {
   // const { user } = useContext(UserContext);
+
+  const cartItems = useSelector((store) => store.cart.items);
   return (
     <div className="flex justify-between shadow-2xl py-5">
       <div>
@@ -23,7 +26,7 @@ const Header = () => {
           <li>
             <Link to="/contact">Contact Us</Link>
           </li>
-          <li>Cart</li>
+          <li>Cart- {cartItems.length}</li>
           <li>
             <Link to="/instamart">Instamart</Link>
           </li>

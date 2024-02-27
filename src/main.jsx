@@ -12,6 +12,7 @@ import RestaurantMenu from "./components/RestaurantMenu.jsx";
 import ProfileClass from "./components/ProfileClass.jsx";
 import Instamart from "./components/Instamart.jsx";
 import { lazy } from "react";
+import Cart from "./components/Cart.jsx";
 
 const About = lazy(() => import("./components/About.jsx"));
 const appRouter = createBrowserRouter([
@@ -50,6 +51,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/instamart",
         element: <Instamart />,
+      },
+      {
+        path: "/checkout",
+        element: <Cart />,
       },
     ],
     errorElement: <Error />,

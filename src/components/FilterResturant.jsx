@@ -7,7 +7,7 @@ const FilterRestaurant = ({ onSearch }) => {
   return (
     <div className="flex flex-col text-center justify-center my-5 ">
       <div className="text">
-        <h1 className="font-bold text-2xl">
+        <h1 className="font-bold text-xl ">
           Restaurants with online food delivery in Bhopal
         </h1>
       </div>

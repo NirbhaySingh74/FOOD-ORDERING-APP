@@ -26,10 +26,12 @@ const Header = () => {
           <li>
             <Link to="/contact">Contact Us</Link>
           </li>
-          <li>Cart- {cartItems.length}</li>
-          <li>
+          <Link to="/checkout">
+            <li>Cart({cartItems.length})</li>
+          </Link>
+          {/* <li>
             <Link to="/instamart">Instamart</Link>
-          </li>
+          </li> */}
           {/* {user.name} */}
         </ul>
       </div>

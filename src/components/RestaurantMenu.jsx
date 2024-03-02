@@ -18,12 +18,12 @@ const RestaurantMenu = () => {
   if (restData.length === 0) {
     return <ShimmerUi />;
   }
-
+  console.log(restData);
   const discounts =
-    restData?.cards[2]?.card?.card?.info?.aggregatedDiscountInfoV2
+    restData?.cards[0]?.card?.card?.info?.aggregatedDiscountInfoV2
       ?.descriptionList;
   const recommendedItems =
-    restData.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card
+    restData.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card
       ?.itemCards;
   console.log(recommendedItems);
   const {
@@ -33,7 +33,7 @@ const RestaurantMenu = () => {
     avgRating,
 
     totalRatingsString,
-  } = restData.cards[2].card.card.info;
+  } = restData.cards[0].card.card.info;
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -65,7 +65,7 @@ const RestaurantMenu = () => {
       <div className="p-4 rounded-md">
         <h2 className="text-lg font-semibold mb-4">Discounts</h2>
         <div className="flex gap-14">
-          {discounts.map((discount, index) => (
+          {discounts?.map((discount, index) => (
             <div
               key={index}
               className="bg-white rounded-md shadow-sm p-2 border-2 py-2  px-4"
@@ -83,10 +83,10 @@ const RestaurantMenu = () => {
       {/* Recommended Section */}
       <div className="mt-8">
         <h1 className="text-xl font-semibold mb-4">
-          Recommended ({recommendedItems.length})
+          Recommended ({recommendedItems?.length})
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {recommendedItems.map((item) => (
+          {recommendedItems?.map((item) => (
             <div
               key={item.id}
               className="bg-white shadow-md rounded-lg overflow-hidden"
